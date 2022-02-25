@@ -1,0 +1,244 @@
+set cli pager off
+configure
+save config to techsupp-lite-config.xml
+exit
+show admins all
+show clock
+show system software status
+show jobs pending
+show jobs processed
+show system info
+show system files
+show system logdb-quota
+show system disk-space
+show system setting url-database
+request system software info
+request license info
+show system setting logging
+show global-protect-portal statistics
+show system environmentals
+debug system disk-smart-info disk-1
+debug management-server telemetry-triggers counters show 
+debug log-receiver telemetry-triggers counters 
+debug system disk-smart-info disk-2
+show system packet-path-test status
+show counter global
+show counter global filter delta yes
+show counter global filter delta yes
+show counter interface all
+show statistics
+show session info
+show session meter
+show session all
+set system setting target-dp s1dp0
+show session distribution policy
+show session distribution statistics
+show session info
+show session all
+show sctp all
+show session all filter protocol 132
+set system setting target-dp s1dp1
+show session info
+show session all
+show sctp all
+show session all filter protocol 132
+set system setting target-dp s1dp2
+show session info
+show session all
+show sctp all
+show session all filter protocol 132
+set system setting target-dp none
+debug dataplane internal pdt fpp sw stats
+show zone-protection
+debug dataplane memory status
+debug dataplane pool statistics
+debug dataplane show memory-pool top-ref
+debug dataplane pow performance all
+debug dataplane pow status 
+show running resource-monitor 
+debug dataplane packet-diag show setting
+debug dataplane fpga state
+debug dataplane show cfg-memstat statistics
+show running security-policy 
+show running nat-policy 
+show running application-override-policy
+show running authentication-policy
+show running decryption-policy
+show running dos-policy
+show running pbf-policy
+show running qos-policy
+show running tunnel-inspect-policy
+show running nat-rule-cache 
+show running global-ippool 
+show running ippool
+show running ipv6 address
+show arp management
+debug dataplane internal vif link
+debug dataplane internal vif address
+debug dataplane internal vif rule
+debug dataplane internal vif vr
+debug dataplane internal vif route 254
+debug dataplane internal vif route 255
+debug dataplane internal vif route 0
+debug dataplane internal pdt oct pip stats
+debug dataplane internal pdt oct pko stats
+debug dataplane internal pdt oct gmx stats
+debug dataplane packet-diag show setting
+debug dataplane mmdbg status
+show high-availability all
+show high-availability state-synchronization
+show high-availability path-monitoring
+debug device-server dump idmgr high-availability state
+debug user-id dump idmgr high-availability state 
+show interface all
+show arp all
+show neighbor interface all
+show neighbor ndp-monitor all
+show vlan all
+show mac all
+debug routing socket
+show routing resource
+show routing summary
+show routing protocol ospf area
+show routing protocol ospf dumplsdb
+show routing protocol ospf interface
+show routing protocol ospf neighbor
+show routing protocol ospf virt-link
+show routing protocol ospf virt-neighbor
+show routing protocol ospf summary
+show routing protocol ospfv3 area
+show routing protocol ospfv3 dumplsdb
+show routing protocol ospfv3 interface
+show routing protocol ospfv3 neighbor
+show routing protocol ospfv3 virt-link
+show routing protocol ospfv3 virt-neighbor
+show routing protocol ospfv3 summary
+show routing protocol rip interface
+show routing protocol rip peer
+show routing protocol rip database
+show routing protocol bgp peer
+show routing protocol bgp peer-group
+show routing protocol bgp policy import
+show routing protocol bgp policy export
+show routing protocol bgp policy cond-adv
+show routing protocol bgp policy aggregate
+show routing protocol bgp loc-rib-detail
+show routing protocol bgp rib-out-detail
+show routing protocol redist all
+show routing route
+show routing route ecmp yes
+show routing fib
+show routing fib ecmp yes
+debug routing fib stats
+debug routing list-mib
+show routing multicast route
+show routing multicast fib
+show routing multicast group-permission
+show routing multicast igmp interface
+show routing multicast igmp membership
+show routing multicast igmp statistics
+show routing multicast pim elected-bsr
+show routing multicast pim group-mapping
+show routing multicast pim interface
+show routing multicast pim neighbor
+show routing multicast pim state
+show routing multicast pim statistics 
+show routing bfd summary
+debug routing mpf stats
+show vpn gateway
+show vpn tunnel
+show vpn ike-sa
+show vpn ipsec-sa
+debug ike socket
+debug ike stat fqdn
+debug keymgr list-sa
+show vpn flow
+show dhcp server lease all
+show dhcp client state all 
+show global-protect-gateway gateway
+show global-protect-gateway flow
+show global-protect-gateway statistics
+show global-protect-satellite current-gateway
+show global-protect-satellite interface all
+show global-protect-satellite satellite
+debug user-id dump hip-profile-database statistics
+show running tunnel flow 
+show running tunnel flow info
+show running tunnel flow lookup
+show running tunnel flow nexthop
+debug device-server dump dynamic-url statistics
+debug device-server dump dynamic-url database
+debug device-server dump regips summary
+show user ts-agent statistics
+show user user-id-agent statistics
+show user user-id-agent state all
+show user user-id-agent state all
+show user user-id-service status
+show user user-id-service client all
+show user group-mapping state all
+show user ip-port-user-mapping all
+debug user-id dump ts-agent user-ids
+debug user-id dump memory summary
+debug user-id dump state
+show user user-ids all option count
+show user ip-user-mapping-mp all option count
+show user ip-user-mapping all option count
+show user ip-user-mapping all option count type UNKNOWN
+show user user-id-service client all
+show user user-id-service client all-details
+show user user-id-service status
+show user group list
+show user credential-filter statistics
+debug dataplane show ctd credential-enforcement group-mapping
+debug dataplane show ctd credential-enforcement domain-credential
+debug user-id dump ntlm-stats 
+debug user-id dump xmlapi-stats 
+debug user-id dump probing-stats 
+debug user-id dump l3svc-stats
+show vm-monitor source all
+show object registered-ip all option count
+show running application cache
+show running application setting
+show running application statistics
+show running application-signature statistics
+show system setting zip
+show system setting ctd state
+debug dataplane show ctd version
+debug dataplane show ctd regex-group dump
+debug dataplane show ctd regex-stats dump
+debug dataplane show dos block-table
+debug dataplane show dos classification-table
+show running url-cache statistics
+debug device-server bc-url-db show-stats
+debug device-server pan-url-db db-perf
+debug device-server pan-url-db show-stats 
+show url-cloud status
+show lacp aggregate-ethernet all
+show lldp neighbors all
+show lldp config all
+show lldp local all
+show system raid detail
+show wildfire status
+show wildfire statistics
+show wildfire disk-usage
+show wildfire cloud-info
+debug wildfire content-info
+debug wildfire dp-status
+debug vardata-receiver statistics
+show report jobs
+show report cache info
+show report exec_mgr info
+show log-collector preference-list
+show logging-status
+debug cord stats show
+debug cord corr-mgr stats show
+debug log-receiver correlation stats show
+debug log-receiver correlation filters show
+debug log-receiver corr-mgr show filter search name *
+debug log-receiver corr-mgr show instance summary
+debug management-server conn
+debug log-receiver rawlog_fwd connmgr
+debug log-receiver rawlog_fwd evtmgr
+request logging-service-forwarding status
+request log-collector-forwarding status
+show device-certificate status
