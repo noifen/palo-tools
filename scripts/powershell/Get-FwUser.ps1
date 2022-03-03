@@ -23,7 +23,7 @@ function Get-FwUser {
         $response = Invoke-RestMethod "https://$firewall/?key=$key&type=op&cmd=%3Cshow%3E%3Cglobal-protect-gateway%3E%3Ccurrent-user%3E%3Cuser%3E$filter%3C%2Fuser%3E%3C%2Fcurrent-user%3E%3C%2Fglobal-protect-gateway%3E%3C%2Fshow%3E"
         try {
             if ($response.response.result.HasChildNodes -eq $true) {
-                $return += $response.response.result.entry | select username,primary-username,login-time,client,virtual-ip,public-ip,@{n='connected';e={[string]$firewall}}
+                $return += $response.response.result.entry | Select-Object username,primary-username,login-time,client,virtual-ip,public-ip,@{n='connected';e={[string]$firewall}}
             }
         } catch {
             #donothing
