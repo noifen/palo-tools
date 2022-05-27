@@ -42,7 +42,6 @@ set deviceconfig system login-banner "You have accessed a protected system. Log 
 set deviceconfig system timezone Europe/London
 set deviceconfig setting ctd tcp-bypass-exceed-queue no
 set deviceconfig setting ctd udp-bypass-exceed-queue no
-set deviceconfig setting ctd allow-http-range no
 set deviceconfig setting management enable-log-high-dp-load yes
 set deviceconfig setting management api key lifetime 525600
 set deviceconfig setting management max-rows-in-csv-export 1048576
@@ -77,6 +76,9 @@ set deviceconfig setting session packet-buffer-protection-latency-activate 200
 set deviceconfig setting session packet-buffer-protection-latency-max-tolerate 500
 set deviceconfig setting session packet-buffer-protection-latency-block-countdown 500
 set deviceconfig setting session packet-buffer-protection-enable yes
+
+#This might break things like SCCM, so use with caution
+set deviceconfig setting ctd allow-http-range no
 
 #Tags referenced in security rules
 set tag Outbound comments "Outbound to the Internet"
