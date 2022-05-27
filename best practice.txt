@@ -3,7 +3,7 @@
 # adapted from Palo's iron skillet
 # either 'search and replace' or the scripts in the tools dir can be used to create a loadable configuration
 
-#
+#turn on scripting mode to make things quicker
 set cli scripting-mode on
 configure
 
