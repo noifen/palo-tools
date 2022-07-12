@@ -84,6 +84,10 @@ set deviceconfig setting ctd allow-http-range no
 set tag Outbound comments "Outbound to the Internet"
 set tag Inbound comments "Inbound from the Internet"
 set tag Internal comments "Internal to Internal"
+set tag trust color color9
+set tag untrust color color14
+set tag "GP Remote" color color6
+set tag "Guest" color color26
 
 #File Blocking Profile
 set profiles file-blocking Outbound-FB rules Alert-All application any
@@ -726,6 +730,27 @@ set shared reports "Clients sinkholed" type traffic sortby repeatcnt
 set shared reports "Clients sinkholed" type traffic group-by from
 set shared reports "Clients sinkholed" type traffic aggregate-by [ src srcuser ]
 set shared reports "Clients sinkholed" type traffic values repeatcnt
+
+#Bogon Filtering
+set tag bogon color color8
+set tag bogon comments "Bogus Networks Filter"
+set address "RFC1918 - 192.168" ip-netmask 192.168.0.0/16
+set address "RFC1918 - 172.16" ip-netmask 172.16.0.0/12
+set address "RFC1918 - 10.0" ip-netmask 10.0.0.0/8
+set address "RFC4193 - fd00" ip-netmask fd00::/8
+set address-group "RFC1918 Private Addresses" static [ "RFC1918 - 10.0" "RFC1918 - 192.168" "RFC1918 - 172.16" "RFC4193 - fd00" ]
+set rulebase security rules "Bogon filter" to untrust
+set rulebase security rules "Bogon filter" from any
+set rulebase security rules "Bogon filter" source any
+set rulebase security rules "Bogon filter" destination "RFC1918 Private Addresses"
+set rulebase security rules "Bogon filter" source-user any
+set rulebase security rules "Bogon filter" category any
+set rulebase security rules "Bogon filter" application any
+set rulebase security rules "Bogon filter" service any
+set rulebase security rules "Bogon filter" source-hip any
+set rulebase security rules "Bogon filter" destination-hip any
+set rulebase security rules "Bogon filter" tag bogon
+set rulebase security rules "Bogon filter" action deny
 
 #Report Groups
 set shared report-group "Possible Compromise" custom-widget 1 custom-report "Clients sinkholed"
