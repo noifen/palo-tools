@@ -752,6 +752,19 @@ set rulebase security rules "Bogon filter" destination-hip any
 set rulebase security rules "Bogon filter" tag bogon
 set rulebase security rules "Bogon filter" action deny
 
+#PANW Sinkhole Rule
+set rulebase security rules "PANW Sinkhole" to untrust
+set rulebase security rules "PANW Sinkhole" from any
+set rulebase security rules "PANW Sinkhole" source any
+set rulebase security rules "PANW Sinkhole" destination [ 72.5.65.111 2600:5200::1 ]
+set rulebase security rules "PANW Sinkhole" source-user any
+set rulebase security rules "PANW Sinkhole" category any
+set rulebase security rules "PANW Sinkhole" application any
+set rulebase security rules "PANW Sinkhole" service any
+set rulebase security rules "PANW Sinkhole" source-hip any
+set rulebase security rules "PANW Sinkhole" destination-hip any
+set rulebase security rules "PANW Sinkhole" action deny
+
 #Report Groups
 set shared report-group "Possible Compromise" custom-widget 1 custom-report "Clients sinkholed"
 set shared report-group "Possible Compromise" custom-widget 2 custom-report "Wildfire malicious verdicts"
