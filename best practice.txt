@@ -801,7 +801,6 @@ set network virtual-router default routing-table ipv6 static-route 0-8 bfd profi
 set network virtual-router default routing-table ipv6 static-route 0-8 metric 65530
 set network virtual-router default routing-table ipv6 static-route 0-8 route-table unicast
 
-
 ##USE THE FOLLOWING WITH CAUTION - INTERNET CONNECTED ROUTERS WILL USE IT
 #BGP NoExport Private Networks
 set network virtual-router default protocol bgp policy export rules "NoExport Private v4" action deny
