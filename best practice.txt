@@ -731,7 +731,7 @@ set shared reports "Clients sinkholed" type traffic group-by from
 set shared reports "Clients sinkholed" type traffic aggregate-by [ src srcuser ]
 set shared reports "Clients sinkholed" type traffic values repeatcnt
 
-#Bogon Filtering
+#Bogon Filtering - based on https://github.com/openbsd/src/blob/master/etc/examples/bgpd.conf
 set tag bogon color color8
 set tag bogon comments "Bogus Networks Filter"
 set address "RFC1918 - 192.168" ip-netmask 192.168.0.0/16
@@ -753,6 +753,119 @@ set rulebase security rules "Bogon filter" source-hip any
 set rulebase security rules "Bogon filter" destination-hip any
 set rulebase security rules "Bogon filter" tag bogon
 set rulebase security rules "Bogon filter" action deny
+
+#Bogon Discarding
+set network virtual-router default routing-table ip static-route 10.0.0.0-8 destination 10.0.0.0/8 nexthop discard
+set network virtual-router default routing-table ip static-route 10.0.0.0-8 path-monitor enable no
+set network virtual-router default routing-table ip static-route 10.0.0.0-8 path-monitor failure-condition any
+set network virtual-router default routing-table ip static-route 10.0.0.0-8 path-monitor hold-time 2
+set network virtual-router default routing-table ip static-route 10.0.0.0-8 nexthop discard
+set network virtual-router default routing-table ip static-route 10.0.0.0-8 bfd profile None
+set network virtual-router default routing-table ip static-route 10.0.0.0-8 metric 65530
+set network virtual-router default routing-table ip static-route 10.0.0.0-8 route-table unicast
+set network virtual-router default routing-table ip static-route 127.0.0.0-8 destination 127.0.0.0/8 nexthop discard
+set network virtual-router default routing-table ip static-route 127.0.0.0-8 path-monitor enable no
+set network virtual-router default routing-table ip static-route 127.0.0.0-8 path-monitor failure-condition any
+set network virtual-router default routing-table ip static-route 127.0.0.0-8 path-monitor hold-time 2
+set network virtual-router default routing-table ip static-route 127.0.0.0-8 bfd profile None
+set network virtual-router default routing-table ip static-route 127.0.0.0-8 metric 65530
+set network virtual-router default routing-table ip static-route 127.0.0.0-8 route-table unicast
+set network virtual-router default routing-table ip static-route 169.254.0.0-16 destination 169.254.0.0/16 nexthop discard
+set network virtual-router default routing-table ip static-route 169.254.0.0-16 path-monitor enable no
+set network virtual-router default routing-table ip static-route 169.254.0.0-16 path-monitor failure-condition any
+set network virtual-router default routing-table ip static-route 169.254.0.0-16 path-monitor hold-time 2
+set network virtual-router default routing-table ip static-route 169.254.0.0-16 bfd profile None
+set network virtual-router default routing-table ip static-route 169.254.0.0-16 metric 65530
+set network virtual-router default routing-table ip static-route 169.254.0.0-16 route-table unicast
+set network virtual-router default routing-table ip static-route 172.16.0.0-12 destination 172.160.0.0/12 nexthop discard
+set network virtual-router default routing-table ip static-route 172.16.0.0-12 path-monitor enable no
+set network virtual-router default routing-table ip static-route 172.16.0.0-12 path-monitor failure-condition any
+set network virtual-router default routing-table ip static-route 172.16.0.0-12 path-monitor hold-time 2
+set network virtual-router default routing-table ip static-route 172.16.0.0-12 nexthop discard
+set network virtual-router default routing-table ip static-route 172.16.0.0-12 bfd profile None
+set network virtual-router default routing-table ip static-route 172.16.0.0-12 metric 65530
+set network virtual-router default routing-table ip static-route 172.16.0.0-12 route-table unicast
+set network virtual-router default routing-table ip static-route 192.168.0.0-16 destination 192.168.0.0/16 nexthop discard
+set network virtual-router default routing-table ip static-route 192.168.0.0-16 path-monitor enable no
+set network virtual-router default routing-table ip static-route 192.168.0.0-16 path-monitor failure-condition any
+set network virtual-router default routing-table ip static-route 192.168.0.0-16 path-monitor hold-time 2
+set network virtual-router default routing-table ip static-route 192.168.0.0-16 nexthop discard
+set network virtual-router default routing-table ip static-route 192.168.0.0-16 bfd profile None
+set network virtual-router default routing-table ip static-route 192.168.0.0-16 metric 65530
+set network virtual-router default routing-table ip static-route 192.168.0.0-16 route-table unicast
+set network virtual-router default routing-table ipv6 static-route 0-8 destination ::/8 nexthop discard
+set network virtual-router default routing-table ipv6 static-route 0-8 path-monitor enable no
+set network virtual-router default routing-table ipv6 static-route 0-8 path-monitor failure-condition any
+set network virtual-router default routing-table ipv6 static-route 0-8 path-monitor hold-time 2
+set network virtual-router default routing-table ipv6 static-route 0-8 bfd profile None
+set network virtual-router default routing-table ipv6 static-route 0-8 metric 65530
+set network virtual-router default routing-table ipv6 static-route 0-8 route-table unicast
+
+
+##USE THE FOLLOWING WITH CAUTION - INTERNET CONNECTED ROUTERS WILL USE IT
+#BGP NoExport Private Networks
+set network virtual-router default protocol bgp policy export rules "NoExport Private v4" action deny
+set network virtual-router default protocol bgp policy export rules "NoExport Private v4" match address-prefix 0.0.0.0/8 exact no
+set network virtual-router default protocol bgp policy export rules "NoExport Private v4" match address-prefix 10.0.0.0/8 exact no
+set network virtual-router default protocol bgp policy export rules "NoExport Private v4" match address-prefix 100.64.0.0/10 exact no
+set network virtual-router default protocol bgp policy export rules "NoExport Private v4" match address-prefix 127.0.0.0/8 exact no
+set network virtual-router default protocol bgp policy export rules "NoExport Private v4" match address-prefix 169.254.0.0/16 exact no
+set network virtual-router default protocol bgp policy export rules "NoExport Private v4" match address-prefix 172.16.0.0/12 exact no
+set network virtual-router default protocol bgp policy export rules "NoExport Private v4" match address-prefix 192.0.2.0/24 exact no
+set network virtual-router default protocol bgp policy export rules "NoExport Private v4" match address-prefix 192.88.99.0/24 exact no
+set network virtual-router default protocol bgp policy export rules "NoExport Private v4" match address-prefix 192.168.0.0/16 exact no
+set network virtual-router default protocol bgp policy export rules "NoExport Private v4" match address-prefix 198.18.0.0/15 exact no
+set network virtual-router default protocol bgp policy export rules "NoExport Private v4" match address-prefix 198.51.100.0/24 exact no
+set network virtual-router default protocol bgp policy export rules "NoExport Private v4" match address-prefix 203.0.113.0/24 exact no
+set network virtual-router default protocol bgp policy export rules "NoExport Private v4" match address-prefix 224.0.0.0/4 exact no
+set network virtual-router default protocol bgp policy export rules "NoExport Private v4" match address-prefix 240.0.0.0/4 exact no
+set network virtual-router default protocol bgp policy export rules "NoExport Private v4" enable yes
+set network virtual-router default protocol bgp policy export rules "NoExport Private v6" action deny
+set network virtual-router default protocol bgp policy export rules "NoExport Private v6" match address-prefix ::/8 exact no
+set network virtual-router default protocol bgp policy export rules "NoExport Private v6" match address-prefix 100::/64 exact no
+set network virtual-router default protocol bgp policy export rules "NoExport Private v6" match address-prefix 2001:2::/48 exact no
+set network virtual-router default protocol bgp policy export rules "NoExport Private v6" match address-prefix 2001:10::/28 exact no
+set network virtual-router default protocol bgp policy export rules "NoExport Private v6" match address-prefix 2001:db8::/32 exact no
+set network virtual-router default protocol bgp policy export rules "NoExport Private v6" match address-prefix 2002::/16 exact no
+set network virtual-router default protocol bgp policy export rules "NoExport Private v6" match address-prefix 3ffe::/16 exact no
+set network virtual-router default protocol bgp policy export rules "NoExport Private v6" match address-prefix fc00::/7 exact no
+set network virtual-router default protocol bgp policy export rules "NoExport Private v6" match address-prefix fe80::/10 exact no
+set network virtual-router default protocol bgp policy export rules "NoExport Private v6" match address-prefix fec0::/10 exact no
+set network virtual-router default protocol bgp policy export rules "NoExport Private v6" match address-prefix ff00::/8 exact no
+set network virtual-router default protocol bgp policy export rules "NoExport Private v6" match route-table unicast
+set network virtual-router default protocol bgp policy export rules "NoExport Private v6" enable yes
+
+#BGP NoImport Private Networks
+set network virtual-router default protocol bgp policy import rules "NoImport Private v4" action deny
+set network virtual-router default protocol bgp policy import rules "NoImport Private v4" match address-prefix 0.0.0.0/8 exact no
+set network virtual-router default protocol bgp policy import rules "NoImport Private v4" match address-prefix 10.0.0.0/8 exact no
+set network virtual-router default protocol bgp policy import rules "NoImport Private v4" match address-prefix 100.64.0.0/10 exact no
+set network virtual-router default protocol bgp policy import rules "NoImport Private v4" match address-prefix 127.0.0.0/8 exact no
+set network virtual-router default protocol bgp policy import rules "NoImport Private v4" match address-prefix 169.254.0.0/16 exact no
+set network virtual-router default protocol bgp policy import rules "NoImport Private v4" match address-prefix 172.16.0.0/12 exact no
+set network virtual-router default protocol bgp policy import rules "NoImport Private v4" match address-prefix 192.0.2.0/24 exact no
+set network virtual-router default protocol bgp policy import rules "NoImport Private v4" match address-prefix 192.88.99.0/24 exact no
+set network virtual-router default protocol bgp policy import rules "NoImport Private v4" match address-prefix 192.168.0.0/16 exact no
+set network virtual-router default protocol bgp policy import rules "NoImport Private v4" match address-prefix 198.18.0.0/15 exact no
+set network virtual-router default protocol bgp policy import rules "NoImport Private v4" match address-prefix 198.51.100.0/24 exact no
+set network virtual-router default protocol bgp policy import rules "NoImport Private v4" match address-prefix 203.0.113.0/24 exact no
+set network virtual-router default protocol bgp policy import rules "NoImport Private v4" match address-prefix 224.0.0.0/4 exact no
+set network virtual-router default protocol bgp policy import rules "NoImport Private v4" match address-prefix 240.0.0.0/4 exact no
+set network virtual-router default protocol bgp policy import rules "NoImport Private v4" enable yes
+set network virtual-router default protocol bgp policy import rules "NoImport Private v6" action deny
+set network virtual-router default protocol bgp policy import rules "NoImport Private v6" match address-prefix ::/8 exact no
+set network virtual-router default protocol bgp policy import rules "NoImport Private v6" match address-prefix 100::/64 exact no
+set network virtual-router default protocol bgp policy import rules "NoImport Private v6" match address-prefix 2001:2::/48 exact no
+set network virtual-router default protocol bgp policy import rules "NoImport Private v6" match address-prefix 2001:10::/28 exact no
+set network virtual-router default protocol bgp policy import rules "NoImport Private v6" match address-prefix 2001:db8::/32 exact no
+set network virtual-router default protocol bgp policy import rules "NoImport Private v6" match address-prefix 2002::/16 exact no
+set network virtual-router default protocol bgp policy import rules "NoImport Private v6" match address-prefix 3ffe::/16 exact no
+set network virtual-router default protocol bgp policy import rules "NoImport Private v6" match address-prefix fc00::/7 exact no
+set network virtual-router default protocol bgp policy import rules "NoImport Private v6" match address-prefix fe80::/10 exact no
+set network virtual-router default protocol bgp policy import rules "NoImport Private v6" match address-prefix fec0::/10 exact no
+set network virtual-router default protocol bgp policy import rules "NoImport Private v6" match address-prefix ff00::/8 exact no
+set network virtual-router default protocol bgp policy import rules "NoImport Private v6" match route-table unicast
+set network virtual-router default protocol bgp policy import rules "NoImport Private v6" enable yes
 
 #PANW Sinkhole Rule
 set rulebase security rules "PANW Sinkhole" to untrust
