@@ -888,6 +888,9 @@ set rulebase default-security-rules rules interzone-default action drop
 set rulebase default-security-rules rules interzone-default log-start no
 set rulebase default-security-rules rules interzone-default log-end yes
 
+#Ping only management profile
+set network profiles interface-management-profile pingonly ping yes
+
 #enable the tab-complete again
 exit
 set cli scripting-mode off
