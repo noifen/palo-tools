@@ -573,13 +573,6 @@ set profile-group default file-blocking Outbound-FB
 set profile-group default wildfire-analysis Outbound-WF
 
 #Security Rules
-set rulebase default-security-rules rules intrazone-default action allow
-set rulebase default-security-rules rules intrazone-default log-start no
-set rulebase default-security-rules rules intrazone-default log-end yes
-set rulebase default-security-rules rules intrazone-default profile-setting group Inbound
-set rulebase default-security-rules rules interzone-default action drop
-set rulebase default-security-rules rules interzone-default log-start no
-set rulebase default-security-rules rules interzone-default log-end yes
 set rulebase security rules "Outbound Block Rule" description "Block outbound sessions with destination address matching one of the Palo Alto Networks external dynamic lists for high risk and known malicious IP addresses."
 set rulebase security rules "Outbound Block Rule" to any
 set rulebase security rules "Outbound Block Rule" from any
@@ -885,6 +878,15 @@ set shared report-group "Possible Compromise" custom-widget 6 custom-report "Hos
 set shared report-group "Possible Compromise" custom-widget 7 custom-report "Host-visit quest sites plus"
 set shared report-group "Possible Compromise" title-page yes
 set shared report-group "Possible Compromise" variable title value "Possible Compromise"
+
+#Palo recommended default rules
+set rulebase default-security-rules rules intrazone-default action allow
+set rulebase default-security-rules rules intrazone-default log-start no
+set rulebase default-security-rules rules intrazone-default log-end yes
+set rulebase default-security-rules rules intrazone-default profile-setting group Inbound
+set rulebase default-security-rules rules interzone-default action drop
+set rulebase default-security-rules rules interzone-default log-start no
+set rulebase default-security-rules rules interzone-default log-end yes
 
 #enable the tab-complete again
 exit
