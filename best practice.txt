@@ -26,6 +26,10 @@ set mgt-config password-complexity block-username-inclusion yes
 set mgt-config password-complexity password-history-count 24
 set mgt-config password-complexity new-password-differs-by-characters 3
 
+#SNMP settings - COPY ONLY ONE LINE v3 Preferred
+set config devices localhost.localdomain deviceconfig system snmp-setting access-setting version v2c snmp-community-string <password>
+set deviceconfig system snmp-setting access-setting version v3
+
 # device system and settings configuration
 set deviceconfig system update-schedule threats recurring every-30-mins at 17
 set deviceconfig system update-schedule threats recurring every-30-mins action download-and-install
@@ -37,7 +41,6 @@ set deviceconfig system update-schedule global-protect-datafile recurring hourly
 set deviceconfig system update-schedule global-protect-datafile recurring hourly action download-and-install
 set deviceconfig system update-schedule global-protect-clientless-vpn recurring hourly at 50
 set deviceconfig system update-schedule global-protect-clientless-vpn recurring hourly action download-and-install
-set deviceconfig system snmp-setting access-setting version v3
 set deviceconfig system login-banner "You have accessed a protected system. Log off immediately if you are not an authorized user."
 set deviceconfig system timezone Europe/London
 set deviceconfig setting ctd tcp-bypass-exceed-queue no
