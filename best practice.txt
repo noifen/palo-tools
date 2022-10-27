@@ -894,6 +894,23 @@ set rulebase default-security-rules rules interzone-default log-end yes
 #Ping only management profile
 set network profiles interface-management-profile pingonly ping yes
 
+#Block QUIC
+set service udp-80 protocol udp port 80
+set service udp-80 protocol udp override no
+set service udp-443 protocol udp port 443
+set service udp-443 protocol udp override no
+set rulebase security rules "Block QUIC" to untrust
+set rulebase security rules "Block QUIC" from any
+set rulebase security rules "Block QUIC" source any
+set rulebase security rules "Block QUIC" destination any
+set rulebase security rules "Block QUIC" source-user any
+set rulebase security rules "Block QUIC" category any
+set rulebase security rules "Block QUIC" application any
+set rulebase security rules "Block QUIC" service [ udp-80 udp-443 ]
+set rulebase security rules "Block QUIC" source-hip any
+set rulebase security rules "Block QUIC" destination-hip any
+set rulebase security rules "Block QUIC" action deny
+
 #enable the tab-complete again
 exit
 set cli scripting-mode off
