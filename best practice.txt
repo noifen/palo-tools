@@ -8,7 +8,7 @@ set cli scripting-mode on
 configure
 
 # management interface configuration - may be skipped if already online
-set deviceconfig system dns-setting servers primary 8.8.8.8
+set deviceconfig system dns-setting servers primary 1.1.1.2
 set deviceconfig system dns-setting servers secondary 8.8.4.4
 
 # NTP configuration
