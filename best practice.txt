@@ -911,6 +911,19 @@ set rulebase security rules "Block QUIC" source-hip any
 set rulebase security rules "Block QUIC" destination-hip any
 set rulebase security rules "Block QUIC" action deny
 
+#secure SSL/TLS profile
+set shared ssl-tls-service-profile secure-tls protocol-settings max-version max
+set shared ssl-tls-service-profile secure-tls protocol-settings min-version tls1-2
+set shared ssl-tls-service-profile secure-tls protocol-settings auth-algo-sha1 no
+set shared ssl-tls-service-profile secure-tls protocol-settings enc-algo-3des no
+set shared ssl-tls-service-profile secure-tls protocol-settings enc-algo-rc4 no
+set shared ssl-tls-service-profile secure-tls protocol-settings keyxchg-algo-dhe no
+set shared ssl-tls-service-profile secure-tls protocol-settings auth-algo-sha256 no
+set shared ssl-tls-service-profile secure-tls protocol-settings enc-algo-aes-128-cbc no
+set shared ssl-tls-service-profile secure-tls protocol-settings enc-algo-aes-128-gcm no
+set shared ssl-tls-service-profile secure-tls protocol-settings keyxchg-algo-rsa no
+set shared ssl-tls-service-profile secure-tls certificate example-cert
+
 #enable the tab-complete again
 exit
 set cli scripting-mode off
