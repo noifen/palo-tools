@@ -87,6 +87,8 @@ set deviceconfig setting ctd allow-http-range no
 set tag Outbound comments "Outbound to the Internet"
 set tag Inbound comments "Inbound from the Internet"
 set tag Internal comments "Internal to Internal"
+set tag PCI comments "Rules used in PCI-DSS"
+set tag PCI color color14
 set tag trust color color9
 set tag untrust color color14
 set tag "GP Remote" color color6
@@ -923,6 +925,24 @@ set shared ssl-tls-service-profile secure-tls protocol-settings enc-algo-aes-128
 set shared ssl-tls-service-profile secure-tls protocol-settings enc-algo-aes-128-gcm no
 set shared ssl-tls-service-profile secure-tls protocol-settings keyxchg-algo-rsa no
 set shared ssl-tls-service-profile secure-tls certificate example-cert
+
+#P2P application block
+set application-filter p2p-applications technology peer-to-peer
+set application-filter p2p-applications risk [ 4 5 ]
+set application-filter p2p-applications exclude skype
+set application-filter p2p-applications prone-to-misuse yes
+set rulebase security rules "p2p block" to untrust
+set rulebase security rules "p2p block" from any
+set rulebase security rules "p2p block" source any
+set rulebase security rules "p2p block" destination any
+set rulebase security rules "p2p block" source-user any
+set rulebase security rules "p2p block" category any
+set rulebase security rules "p2p block" application p2p-applications
+set rulebase security rules "p2p block" service any
+set rulebase security rules "p2p block" source-hip any
+set rulebase security rules "p2p block" destination-hip any
+set rulebase security rules "p2p block" action deny
+set rulebase security rules "p2p block" rule-type interzone
 
 #enable the tab-complete again
 exit
