@@ -728,6 +728,8 @@ set shared reports "Clients sinkholed" type traffic values repeatcnt
 #Bogon Filtering - based on https://github.com/openbsd/src/blob/master/etc/examples/bgpd.conf
 set tag bogon color color8
 set tag bogon comments "Bogus Networks Filter"
+set tag bogon6 color color8
+set tag bogon6 comments "Bogus v6 Networks Filter"
 set address "RFC1122 0.0.0.0-8" ip-netmask 0.0.0.0/8
 set address "RFC1122 0.0.0.0-8" description "this network RFC1122"
 set address "RFC1122 0.0.0.0-8" tag bogon
@@ -751,7 +753,7 @@ set address "RFC5737 192.0.2" description "TEST-NET-1 RFC5737"
 set address "RFC5737 192.0.2" tag bogon
 set address "RFC7526 192.88.99" ip-netmask 192.88.99.0/24
 set address "RFC7526 192.88.99" description "6to4 anycast relay RFC7526"
-set address "RFC7526 192.88.99" tag bogon
+set address "RFC7526 192.88.99" tag bogon6
 set address "RFC1918 192.168" ip-netmask 192.168.0.0/16
 set address "RFC1918 192.168" description "private space RFC1918"
 set address "RFC1918 192.168" tag bogon
@@ -772,38 +774,38 @@ set address "RESERVED 240" description "reserved for future use"
 set address "RESERVED 240" tag bogon
 set address "RFC4291 00.00" ip-netmask ::/8
 set address "RFC4291 00.00" description "RFC 4291 IPv4-compatible, loopback, et al"
-set address "RFC4291 00.00" tag bogon
+set address "RFC4291 00.00" tag bogon6
 set address "RFC6666 0100" ip-netmask 0100::/64
 set address "RFC6666 0100" description "Discard-Only RFC6666"
-set address "RFC6666 0100" tag bogon
+set address "RFC6666 0100" tag bogon6
 set address "RFC5180 2001.2" ip-netmask 2001:2::/48
 set address "RFC5180 2001.2" description "BMWG RFC5180"
-set address "RFC5180 2001.2" tag bogon
+set address "RFC5180 2001.2" tag bogon6
 set address "RFC4843 2001.10" ip-netmask 2001:10::/28
 set address "RFC4843 2001.10" description "ORCHID RFC4843"
-set address "RFC4843 2001.10" tag bogon
+set address "RFC4843 2001.10" tag bogon6
 set address "RFC3849 2001.db8" ip-netmask 2001:db8::/32
 set address "RFC3849 2001.db8" description "docu range RFC3849"
-set address "RFC3849 2001.db8" tag bogon
+set address "RFC3849 2001.db8" tag bogon6
 set address "RFC7526 2002" ip-netmask 2002::/16
 set address "RFC7526 2002" description "6to4 anycast relay RFC7526"
-set address "RFC7526 2002" tag bogon
+set address "RFC7526 2002" tag bogon6
 set address "OLD 6bone" ip-netmask 3ffe::/16
 set address "OLD 6bone" description "old 6bone"
-set address "OLD 6bone" tag bogon
+set address "OLD 6bone" tag bogon6
 set address "local unicast fc00" ip-netmask fc00::/7
 set address "local unicast fc00" description "unique local unicast"
-set address "local unicast fc00" tag bogon
+set address "local unicast fc00" tag bogon6
 set address "local unicast fe80" ip-netmask fe80::/10
 set address "local unicast fe80" description "link local unicast"
-set address "local unicast fe80" tag bogon
+set address "local unicast fe80" tag bogon6
 set address "local unicast fec0" ip-netmask fec0::/10
 set address "local unicast fec0" description "old site local unicast"
-set address "local unicast fec0" tag bogon
+set address "local unicast fec0" tag bogon6
 set address "multicast ff00" ip-netmask ff00::/8
 set address "multicast ff00" description "multicast"
-set address "multicast ff00" tag bogon
-set address-group "bogon networks" dynamic filter "'bogon'"
+set address "multicast ff00" tag bogon6
+set address-group "bogon networks" dynamic filter "'bogon' or bogon6"
 set rulebase security rules "Bogon filter" to untrust
 set rulebase security rules "Bogon filter" from any
 set rulebase security rules "Bogon filter" source any
