@@ -926,7 +926,7 @@ set shared ssl-tls-service-profile secure-tls protocol-settings enc-algo-aes-128
 set shared ssl-tls-service-profile secure-tls protocol-settings keyxchg-algo-rsa no
 set shared ssl-tls-service-profile secure-tls certificate example-cert
 
-#P2P application block
+# P2P application block
 set application-filter p2p-applications technology peer-to-peer
 set application-filter p2p-applications risk [ 4 5 ]
 set application-filter p2p-applications exclude skype
@@ -944,9 +944,14 @@ set rulebase security rules "p2p block" destination-hip any
 set rulebase security rules "p2p block" action deny
 set rulebase security rules "p2p block" rule-type interzone
 
-#PREVENT URL filtering
+# PREVENT URL filtering
 set profiles custom-url-category questionable-adult type "Category Match" list [ adult questionable ]
 set profiles url-filtering Outbound-URL block [ questionable-adult extremism ]
+
+# CPPM API role
+set shared admin-role "Clearpass API Admin" role device webui
+set shared admin-role "Clearpass API Admin" role device xmlapi user-id enable
+set shared admin-role "Clearpass API Admin" role device restapi
 
 #enable the tab-complete again
 exit
