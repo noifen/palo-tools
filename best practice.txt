@@ -732,9 +732,9 @@ set address "RFC1918 - 192.168" ip-netmask 192.168.0.0/16
 set address "RFC1918 - 172.16" ip-netmask 172.16.0.0/12
 set address "RFC1918 - 10.0" ip-netmask 10.0.0.0/8
 set address "RFC3927 - 169.254" ip-netmask 169.254.0.0/16
-set address "RFC4193 - fd00" ip-netmask fd00::/8
+set address "RFC4193 - fc00" ip-netmask fc00::/7
 set address "RFC4291 - fe80" ip-netmask fe80::/10
-set address-group "RFC1918 Private Addresses" static [ "RFC1918 - 10.0" "RFC1918 - 192.168" "RFC1918 - 172.16" "RFC4193 - fd00" "RFC3927 - 169.254" "RFC4291 - fe80" ]
+set address-group "RFC1918 Private Addresses" static [ "RFC1918 - 10.0" "RFC1918 - 192.168" "RFC1918 - 172.16" "RFC4193 - fc00" "RFC3927 - 169.254" "RFC4291 - fe80" ]
 set rulebase security rules "Bogon filter" to untrust
 set rulebase security rules "Bogon filter" from any
 set rulebase security rules "Bogon filter" source any
