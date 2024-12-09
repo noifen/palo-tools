@@ -953,6 +953,162 @@ set shared admin-role "Clearpass API Admin" role device webui
 set shared admin-role "Clearpass API Admin" role device xmlapi user-id enable
 set shared admin-role "Clearpass API Admin" role device restapi
 
+# Aruba Central
+set tag ArubaCentral color color20
+set tag ArubaGuest color color4
+set tag Aruba color color20
+set tag ArubaTelemetry
+set tag ArubaRCS
+set tag "BP" color color19
+
+set address ac-telemetry-eu1 fqdn central-eu-hc.central.arubanetworks.com
+set address ac-telemetry-eu1 tag ArubaTelemetry
+set address ac-telemetry-eu2 fqdn eucentral2-hc.central.arubanetworks.com
+set address ac-telemetry-eu2 tag ArubaTelemetry
+set address ac-telemetry-eu3 fqdn eucentral3-hc.central.arubanetworks.com
+set address ac-telemetry-eu3 tag ArubaTelemetry
+set address ac-conn-eu1 fqdn app2-eu.central.arubanetworks.com
+set address ac-conn-eu1 tag ArubaCentral
+set address ac-conn-eu2 fqdn app-eucentral2.central.arubanetworks.com
+set address ac-conn-eu2 tag ArubaCentral
+set address ac-conn-eu3 fqdn eucentral3.central.arubanetworks.com
+set address ac-conn-eu3 tag ArubaCentral
+set address ac-devconn-eu1 fqdn device-eu.central.arubanetworks.com
+set address ac-devconn-eu1 tag ArubaCentral
+set address ac-devconn-eu2 fqdn device-eu.central.arubanetworks.com
+set address ac-devconn-eu2 tag ArubaCentral
+set address ac-devconn-eu3 fqdn device-eucentral3-d2.central.arubanetworks.com
+set address ac-devconn-eu3 tag ArubaCentral
+set address ac-activate-1 fqdn device.arubanetworks.com
+set address ac-activate-1 tag ArubaCentral
+set address ac-activate-2 fqdn devices-v2.arubanetworks.com
+set address ac-activate-2 tag ArubaCentral
+set address ac-activate-3 fqdn est.arubanetworks.com
+set address ac-activate-3 tag ArubaCentral
+set address ac-guest-eu1 fqdn euw1.cloudguest.central.arubanetworks.com
+set address ac-guest-eu1 tag ArubaGuest
+set address ac-guest-eu2 fqdn euw2.cloudguest.central.arubanetworks.com
+set address ac-guest-eu2 tag ArubaGuest
+set address ac-guest-eu3 fqdn euw3.cloudguest.central.arubanetworks.com
+set address ac-guest-eu3 tag ArubaGuest
+set address ac-guest-eu1-elb fqdn euw1-elb.cloudguest.central.arubanetworks.com
+set address ac-guest-eu1-elb tag ArubaGuest
+set address ac-guest-eu2-elb fqdn euw2-elb.cloudguest.central.arubanetworks.com
+set address ac-guest-eu2-elb tag ArubaGuest
+set address ac-guest-eu3-elb fqdn euw3-elb.cloudguest.central.arubanetworks.com
+set address ac-guest-eu3-elb tag ArubaGuest
+set address ac-rcs-eu1 fqdn rcs-ng-eu.central.arubanetworks.com
+set address ac-rcs-eu1 tag ArubaRCS
+set address ac-rcs-eu1-xp fqdn rcs-ng-xp-eu.central.arubanetworks.com
+set address ac-rcs-eu1-xp tag ArubaRCS
+set address ac-rcs-eu2 fqdn rcs-ng-eucentral2.central.arubanetworks.com
+set address ac-rcs-eu2 tag ArubaRCS
+set address ac-rcs-eu2-xp fqdn rcs-ng-xp-eucentral2.central.arubanetworks.com
+set address ac-rcs-eu2-xp tag ArubaRCS
+set address ac-rcs-eu3 fqdn rcs-ng-eucentral3.central.arubanetworks.com
+set address ac-rcs-eu3 tag ArubaRCS
+set address ac-rcs-eu3-xp fqdn rcs-ng-xp-eucentral3.central.arubanetworks.com
+set address ac-rcs-eu3-xp tag ArubaRCS
+set address "NTP Pool" fqdn pool.ntp.org
+set address aruba-stun fqdn stun.pqm.arubanetworks.com
+
+set address-group "Aruba Central" dynamic filter "'ArubaCentral'"
+set address-group "Aruba Central Guest" dynamic filter "'ArubaGuest'"
+set address-group "Aruba Telemetry" dynamic filter "'ArubaTelemetry'"
+set address-group "Aruba RCS" dynamic filter "'ArubaRCS'"
+
+set rulebase security rules "Aruba Telemetry" from any
+set rulebase security rules "Aruba Telemetry" source any
+set rulebase security rules "Aruba Telemetry" destination "Aruba Telemetry"
+set rulebase security rules "Aruba Telemetry" source-user any
+set rulebase security rules "Aruba Telemetry" category any
+set rulebase security rules "Aruba Telemetry" application ssl
+set rulebase security rules "Aruba Telemetry" service application-default
+set rulebase security rules "Aruba Telemetry" source-hip any
+set rulebase security rules "Aruba Telemetry" destination-hip any
+set rulebase security rules "Aruba Telemetry" action allow
+set rulebase security rules "Aruba Telemetry" group-tag Aruba
+set rulebase security rules "Aruba Telemetry" tag "BP"
+set rulebase security rules "Aruba Telemetry" description "Created by Best Practice"
+set rulebase security rules "Aruba Central" from any
+set rulebase security rules "Aruba Central" source any
+set rulebase security rules "Aruba Central" destination "Aruba Central"
+set rulebase security rules "Aruba Central" source-user any
+set rulebase security rules "Aruba Central" category any
+set rulebase security rules "Aruba Central" application ssl
+set rulebase security rules "Aruba Central" service application-default
+set rulebase security rules "Aruba Central" source-hip any
+set rulebase security rules "Aruba Central" destination-hip any
+set rulebase security rules "Aruba Central" tag "BP"
+set rulebase security rules "Aruba Central" action allow
+set rulebase security rules "Aruba Central" group-tag Aruba
+set rulebase security rules "Aruba Central" description "Created by Best Practice"
+set rulebase security rules "Aruba Guest" from any
+set rulebase security rules "Aruba Guest" source any
+set rulebase security rules "Aruba Guest" destination "Aruba Central Guest"
+set rulebase security rules "Aruba Guest" source-user any
+set rulebase security rules "Aruba Guest" category any
+set rulebase security rules "Aruba Guest" application ssl
+set rulebase security rules "Aruba Guest" service application-default
+set rulebase security rules "Aruba Guest" source-hip any
+set rulebase security rules "Aruba Guest" destination-hip any
+set rulebase security rules "Aruba Guest" tag "BP"
+set rulebase security rules "Aruba Guest" action allow
+set rulebase security rules "Aruba Guest" group-tag Aruba
+set rulebase security rules "Aruba Guest" description "Created by Best Practice"
+set rulebase security rules "Aruba Guest-1" from any
+set rulebase security rules "Aruba Guest-1" source any
+set rulebase security rules "Aruba Guest-1" destination "Aruba Central Guest"
+set rulebase security rules "Aruba Guest-1" source-user any
+set rulebase security rules "Aruba Guest-1" category any
+set rulebase security rules "Aruba Guest-1" application any
+set rulebase security rules "Aruba Guest-1" service tcp-2083
+set rulebase security rules "Aruba Guest-1" source-hip any
+set rulebase security rules "Aruba Guest-1" destination-hip any
+set rulebase security rules "Aruba Guest-1" tag "BP"
+set rulebase security rules "Aruba Guest-1" action allow
+set rulebase security rules "Aruba Guest-1" group-tag Aruba
+set rulebase security rules "Aruba Guest-1" description "Created by Best Practice"
+set rulebase security rules "Aruba RCS" from any
+set rulebase security rules "Aruba RCS" source any
+set rulebase security rules "Aruba RCS" destination "Aruba RCS"
+set rulebase security rules "Aruba RCS" source-user any
+set rulebase security rules "Aruba RCS" category any
+set rulebase security rules "Aruba RCS" application ssh
+set rulebase security rules "Aruba RCS" service tcp-443
+set rulebase security rules "Aruba RCS" source-hip any
+set rulebase security rules "Aruba RCS" destination-hip any
+set rulebase security rules "Aruba RCS" tag "BP"
+set rulebase security rules "Aruba RCS" action allow
+set rulebase security rules "Aruba RCS" group-tag Aruba
+set rulebase security rules "Aruba RCS" description "Created by Best Practice"
+set rulebase security rules "Aruba NTP" from any
+set rulebase security rules "Aruba NTP" source any
+set rulebase security rules "Aruba NTP" destination "NTP Pool"
+set rulebase security rules "Aruba NTP" source-user any
+set rulebase security rules "Aruba NTP" category any
+set rulebase security rules "Aruba NTP" application ntp
+set rulebase security rules "Aruba NTP" service application-default
+set rulebase security rules "Aruba NTP" source-hip any
+set rulebase security rules "Aruba NTP" destination-hip any
+set rulebase security rules "Aruba NTP" tag "BP"
+set rulebase security rules "Aruba NTP" action allow
+set rulebase security rules "Aruba NTP" group-tag Aruba
+set rulebase security rules "Aruba NTP" description "Created by Best Practice"
+set rulebase security rules "Aruba STUN" from any
+set rulebase security rules "Aruba STUN" source any
+set rulebase security rules "Aruba STUN" destination aruba-stun
+set rulebase security rules "Aruba STUN" source-user any
+set rulebase security rules "Aruba STUN" category any
+set rulebase security rules "Aruba STUN" application stun
+set rulebase security rules "Aruba STUN" service application-default
+set rulebase security rules "Aruba STUN" source-hip any
+set rulebase security rules "Aruba STUN" destination-hip any
+set rulebase security rules "Aruba STUN" tag "BP"
+set rulebase security rules "Aruba STUN" action allow
+set rulebase security rules "Aruba STUN" group-tag Aruba
+set rulebase security rules "Aruba STUN" description "Created by Best Practice
+
 #enable the tab-complete again
 exit
 set cli scripting-mode off
