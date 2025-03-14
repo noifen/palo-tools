@@ -284,26 +284,6 @@ set profiles spyware Alert-Only-AS rules Alert-All severity any
 set profiles spyware Alert-Only-AS rules Alert-All threat-name any
 set profiles spyware Alert-Only-AS rules Alert-All category any
 set profiles spyware Alert-Only-AS rules Alert-All packet-capture disable
-set profiles spyware Exception-AS description "Used for exception cases not part of the recommended practice"
-set profiles spyware Exception-AS botnet-domains sinkhole ipv4-address sinkhole.paloaltonetworks.com
-set profiles spyware Exception-AS botnet-domains sinkhole ipv6-address 2600:5200::1
-set profiles spyware Exception-AS botnet-domains lists default-paloalto-dns packet-capture disable
-set profiles spyware Exception-AS botnet-domains lists default-paloalto-dns action sinkhole
-set profiles spyware Exception-AS botnet-domains dns-security-categories pan-dns-sec-benign log-level default
-set profiles spyware Exception-AS botnet-domains dns-security-categories pan-dns-sec-benign action default
-set profiles spyware Exception-AS botnet-domains dns-security-categories pan-dns-sec-benign packet-capture disable
-set profiles spyware Exception-AS botnet-domains dns-security-categories pan-dns-sec-cc log-level default
-set profiles spyware Exception-AS botnet-domains dns-security-categories pan-dns-sec-cc action default
-set profiles spyware Exception-AS botnet-domains dns-security-categories pan-dns-sec-cc packet-capture single-packet
-set profiles spyware Exception-AS botnet-domains dns-security-categories pan-dns-sec-ddns log-level default
-set profiles spyware Exception-AS botnet-domains dns-security-categories pan-dns-sec-ddns action default
-set profiles spyware Exception-AS botnet-domains dns-security-categories pan-dns-sec-ddns packet-capture single-packet
-set profiles spyware Exception-AS botnet-domains dns-security-categories pan-dns-sec-malware log-level default
-set profiles spyware Exception-AS botnet-domains dns-security-categories pan-dns-sec-malware action default
-set profiles spyware Exception-AS botnet-domains dns-security-categories pan-dns-sec-malware packet-capture single-packet
-set profiles spyware Exception-AS botnet-domains dns-security-categories pan-dns-sec-recent log-level default
-set profiles spyware Exception-AS botnet-domains dns-security-categories pan-dns-sec-recent action default
-set profiles spyware Exception-AS botnet-domains dns-security-categories pan-dns-sec-recent packet-capture single-packet
 
 #URL Filtering Profile
 set profiles custom-url-category Block type "URL List"
@@ -426,32 +406,6 @@ set profiles virus Internal-AV mlav-engine-filebased-enabled "Windows Executable
 set profiles virus Internal-AV mlav-engine-filebased-enabled "PowerShell Script 1" mlav-policy-action enable
 set profiles virus Internal-AV mlav-engine-filebased-enabled "PowerShell Script 2" mlav-policy-action enable
 set profiles virus Internal-AV mlav-engine-filebased-enabled "Executable Linked Format" mlav-policy-action enable
-set profiles virus Exception-AV decoder ftp action reset-both
-set profiles virus Exception-AV decoder ftp wildfire-action reset-both
-set profiles virus Exception-AV decoder ftp mlav-action reset-both
-set profiles virus Exception-AV decoder http action reset-both
-set profiles virus Exception-AV decoder http wildfire-action reset-both
-set profiles virus Exception-AV decoder http mlav-action reset-both
-set profiles virus Exception-AV decoder http2 action reset-both
-set profiles virus Exception-AV decoder http2 wildfire-action reset-both
-set profiles virus Exception-AV decoder http2 mlav-action reset-both
-set profiles virus Exception-AV decoder imap action reset-both
-set profiles virus Exception-AV decoder imap wildfire-action reset-both
-set profiles virus Exception-AV decoder imap mlav-action reset-both
-set profiles virus Exception-AV decoder pop3 action reset-both
-set profiles virus Exception-AV decoder pop3 wildfire-action reset-both
-set profiles virus Exception-AV decoder pop3 mlav-action reset-both
-set profiles virus Exception-AV decoder smb action reset-both
-set profiles virus Exception-AV decoder smb wildfire-action reset-both
-set profiles virus Exception-AV decoder smb mlav-action reset-both
-set profiles virus Exception-AV decoder smtp action reset-both
-set profiles virus Exception-AV decoder smtp wildfire-action reset-both
-set profiles virus Exception-AV decoder smtp mlav-action reset-both
-set profiles virus Exception-AV mlav-engine-filebased-enabled "Windows Executables" mlav-policy-action enable
-set profiles virus Exception-AV mlav-engine-filebased-enabled "PowerShell Script 1" mlav-policy-action enable
-set profiles virus Exception-AV mlav-engine-filebased-enabled "PowerShell Script 2" mlav-policy-action enable
-set profiles virus Exception-AV mlav-engine-filebased-enabled "Executable Linked Format" mlav-policy-action enable
-set profiles virus Exception-AV description "Use this profile for rules needing modifications to the standard"
 
 #Vulnerability Protection Profile
 set profiles vulnerability Outbound-VP rules Block-Critical-High-Medium action reset-both
@@ -510,7 +464,6 @@ set profiles vulnerability Alert-Only-VP rules Alert-All threat-name any
 set profiles vulnerability Alert-Only-VP rules Alert-All host any
 set profiles vulnerability Alert-Only-VP rules Alert-All category any
 set profiles vulnerability Alert-Only-VP rules Alert-All packet-capture disable
-set profiles vulnerability Exception-VP
 
 #Wildfire Analysis Profiles
 set profiles wildfire-analysis Outbound-WF rules Forward-All application any
