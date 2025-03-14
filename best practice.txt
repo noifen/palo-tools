@@ -1109,6 +1109,35 @@ set rulebase security rules "Aruba STUN" action allow
 set rulebase security rules "Aruba STUN" group-tag Aruba
 set rulebase security rules "Aruba STUN" description "Created by Best Practice
 
+#3gpp WiFi Calling
+set tag 3gppnetwork color color9
+set address 3gppnetwork-EE030 fqdn epdg.epc.mnc030.mcc234.pub.3gppnetwork.org
+set address 3gppnetwork-EE030 tag 3gppnetwork
+set address 3gppnetwork-EE033 fqdn epdg.epc.mnc033.mcc234.pub.3gppnetwork.org
+set address 3gppnetwork-EE033 tag 3gppnetwork
+set address 3gppnetwork-O2010 fqdn epdg.epc.mnc010.mcc234.pub.3gppnetwork.org
+set address 3gppnetwork-O2010 tag 3gppnetwork
+set address 3gppnetwork-Voda015 fqdn epdg.epc.mnc015.mcc234.pub.3gppnetwork.org
+set address 3gppnetwork-Voda015 tag 3gppnetwork
+set address 3gppnetwork-Three020 fqdn epdg.epc.mnc020.mcc234.pub.3gppnetwork.org
+set address 3gppnetwork-Three020 tag 3gppnetwork
+set address-group 3gpp-wificalling dynamic filter "'3gppnetwork'"
+set rulebase security rules WiFi-calling to untrust
+set rulebase security rules WiFi-calling from any
+set rulebase security rules WiFi-calling source any
+set rulebase security rules WiFi-calling destination 3gpp-wificalling
+set rulebase security rules WiFi-calling source-user any
+set rulebase security rules WiFi-calling category any
+set rulebase security rules WiFi-calling saas-user-list any
+set rulebase security rules WiFi-calling saas-tenant-list any
+set rulebase security rules WiFi-calling application ipsec
+set rulebase security rules WiFi-calling service application-default
+set rulebase security rules WiFi-calling source-hip any
+set rulebase security rules WiFi-calling destination-hip any
+set rulebase security rules WiFi-calling action allow
+set rulebase security rules WiFi-calling log-start no
+set rulebase security rules WiFi-calling log-end yes
+
 #enable the tab-complete again
 exit
 set cli scripting-mode off
