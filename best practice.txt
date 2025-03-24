@@ -953,6 +953,9 @@ set address-group "Aruba Central Guest" dynamic filter "'ArubaGuest'"
 set address-group "Aruba Telemetry" dynamic filter "'ArubaTelemetry'"
 set address-group "Aruba RCS" dynamic filter "'ArubaRCS'"
 
+set service tcp-2083 protocol tcp port 2083
+set service tcp-2083 protocol tcp override no
+
 set rulebase security rules "Aruba Telemetry" from any
 set rulebase security rules "Aruba Telemetry" source any
 set rulebase security rules "Aruba Telemetry" destination "Aruba Telemetry"
@@ -1011,7 +1014,7 @@ set rulebase security rules "Aruba RCS" destination "Aruba RCS"
 set rulebase security rules "Aruba RCS" source-user any
 set rulebase security rules "Aruba RCS" category any
 set rulebase security rules "Aruba RCS" application ssh
-set rulebase security rules "Aruba RCS" service tcp-443
+set rulebase security rules "Aruba RCS" service service-https
 set rulebase security rules "Aruba RCS" source-hip any
 set rulebase security rules "Aruba RCS" destination-hip any
 set rulebase security rules "Aruba RCS" tag "BP"
