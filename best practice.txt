@@ -867,7 +867,7 @@ set network virtual-router default protocol bgp policy import rules "NoImport Pr
 set rulebase security rules "PANW Sinkhole" to untrust
 set rulebase security rules "PANW Sinkhole" from any
 set rulebase security rules "PANW Sinkhole" source any
-set rulebase security rules "PANW Sinkhole" destination [ 72.5.65.111 2600:5200::1 ]
+set rulebase security rules "PANW Sinkhole" destination [ 198.135.184.22 2600:5200::1 ]
 set rulebase security rules "PANW Sinkhole" source-user any
 set rulebase security rules "PANW Sinkhole" category any
 set rulebase security rules "PANW Sinkhole" application any
