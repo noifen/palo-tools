@@ -656,78 +656,6 @@ set network profiles zone-protection-profile Recommended_Zone_Protection remove-
 set network profiles zone-protection-profile Recommended_Zone_Protection strip-tcp-fast-open-and-data no
 set network profiles zone-protection-profile Recommended_Zone_Protection strip-mptcp-option global
 
-#General Reports
-set shared reports "Host-visit malicious sites plus" period last-7-calendar-days
-set shared reports "Host-visit malicious sites plus" topn 500
-set shared reports "Host-visit malicious sites plus" topm 50
-set shared reports "Host-visit malicious sites plus" caption "Host-visit malicious sites plus"
-set shared reports "Host-visit malicious sites plus" frequency daily
-set shared reports "Host-visit malicious sites plus" query "(category eq command-and-control) or (category eq hacking) or (category eq malware) or (category eq phishing) or (category eq grayware)"
-set shared reports "Host-visit malicious sites plus" type url sortby repeatcnt
-set shared reports "Host-visit malicious sites plus" type url group-by src
-set shared reports "Host-visit malicious sites plus" type url aggregate-by [ from srcuser category action ]
-set shared reports "Host-visit malicious sites plus" type url values repeatcnt
-set shared reports "Hosts visit malicious sites" period last-7-calendar-days
-set shared reports "Hosts visit malicious sites" topn 500
-set shared reports "Hosts visit malicious sites" topm 50
-set shared reports "Hosts visit malicious sites" caption "Hosts visit malicious sites"
-set shared reports "Hosts visit malicious sites" frequency daily
-set shared reports "Hosts visit malicious sites" query "(category eq command-and-control) or (category eq hacking) or (category eq malware) or (category eq phishing) or (category eq grayware)"
-set shared reports "Hosts visit malicious sites" type url sortby repeatcnt
-set shared reports "Hosts visit malicious sites" type url group-by src
-set shared reports "Hosts visit malicious sites" type url aggregate-by [ from srcuser ]
-set shared reports "Hosts visit malicious sites" type url values repeatcnt
-set shared reports "Hosts visit questionable sites" period last-7-calendar-days
-set shared reports "Hosts visit questionable sites" topn 500
-set shared reports "Hosts visit questionable sites" topm 50
-set shared reports "Hosts visit questionable sites" caption "Hosts visit questionable sites"
-set shared reports "Hosts visit questionable sites" frequency daily
-set shared reports "Hosts visit questionable sites" query "(category eq dynamic-dns) and (category eq parked) and (category eq questionable) and (category eq unknown)"
-set shared reports "Hosts visit questionable sites" type url sortby repeatcnt
-set shared reports "Hosts visit questionable sites" type url group-by src
-set shared reports "Hosts visit questionable sites" type url aggregate-by [ from srcuser ]
-set shared reports "Hosts visit questionable sites" type url values repeatcnt
-set shared reports "Host-visit quest sites plus" period last-7-calendar-days
-set shared reports "Host-visit quest sites plus" topn 500
-set shared reports "Host-visit quest sites plus" topm 50
-set shared reports "Host-visit quest sites plus" caption "Host-visit quest sites plus"
-set shared reports "Host-visit quest sites plus" frequency daily
-set shared reports "Host-visit quest sites plus" query "(category eq dynamic-dns) and (category eq parked) and (category eq questionable) and (category eq unknown)"
-set shared reports "Host-visit quest sites plus" description "Detail of hosts visiting questionable URLs"
-set shared reports "Host-visit quest sites plus" type url sortby repeatcnt
-set shared reports "Host-visit quest sites plus" type url group-by src
-set shared reports "Host-visit quest sites plus" type url aggregate-by [ from srcuser category action ]
-set shared reports "Host-visit quest sites plus" type url values repeatcnt
-set shared reports "Wildfire malicious verdicts" period last-30-calendar-days
-set shared reports "Wildfire malicious verdicts" topn 500
-set shared reports "Wildfire malicious verdicts" topm 10
-set shared reports "Wildfire malicious verdicts" caption "Wildfire malicious verdicts"
-set shared reports "Wildfire malicious verdicts" frequency daily
-set shared reports "Wildfire malicious verdicts" query "(app neq smtp) and (category neq benign)"
-set shared reports "Wildfire malicious verdicts" description "Files uploaded or downloaded that were later found to be malicious. This is a summary. Act on real-time email."
-set shared reports "Wildfire malicious verdicts" type wildfire sortby repeatcnt
-set shared reports "Wildfire malicious verdicts" type wildfire aggregate-by [ filedigest container-of-app app category filetype rule ]
-set shared reports "Wildfire malicious verdicts" type wildfire values repeatcnt
-set shared reports "Wildfire verdicts SMTP" period last-30-calendar-days
-set shared reports "Wildfire verdicts SMTP" topn 500
-set shared reports "Wildfire verdicts SMTP" topm 10
-set shared reports "Wildfire verdicts SMTP" caption "Wildfire verdicts SMTP"
-set shared reports "Wildfire verdicts SMTP" frequency daily
-set shared reports "Wildfire verdicts SMTP" query "(app eq smtp) and (category neq benign)"
-set shared reports "Wildfire verdicts SMTP" description "Links sent from emails found to be malicious. "
-set shared reports "Wildfire verdicts SMTP" type wildfire sortby repeatcnt
-set shared reports "Wildfire verdicts SMTP" type wildfire aggregate-by [ filedigest container-of-app app category filetype rule subject sender recipient misc ]
-set shared reports "Clients sinkholed" period last-30-calendar-days
-set shared reports "Clients sinkholed" topn 500
-set shared reports "Clients sinkholed" topm 50
-set shared reports "Clients sinkholed" caption "Clients sinkholed"
-set shared reports "Clients sinkholed" query "(rule eq 'DNS Sinkhole Block')"
-set shared reports "Clients sinkholed" frequency daily
-set shared reports "Clients sinkholed" type traffic sortby repeatcnt
-set shared reports "Clients sinkholed" type traffic group-by from
-set shared reports "Clients sinkholed" type traffic aggregate-by [ src srcuser ]
-set shared reports "Clients sinkholed" type traffic values repeatcnt
-
 #Bogon Filtering - based on https://github.com/openbsd/src/blob/master/etc/examples/bgpd.conf
 set tag bogon color color8
 set tag bogon comments "Bogus Networks Filter"
@@ -875,17 +803,6 @@ set rulebase security rules "PANW Sinkhole" service any
 set rulebase security rules "PANW Sinkhole" source-hip any
 set rulebase security rules "PANW Sinkhole" destination-hip any
 set rulebase security rules "PANW Sinkhole" action deny
-
-#Report Groups
-set shared report-group "Possible Compromise" custom-widget 1 custom-report "Clients sinkholed"
-set shared report-group "Possible Compromise" custom-widget 2 custom-report "Wildfire malicious verdicts"
-set shared report-group "Possible Compromise" custom-widget 3 custom-report "Wildfire verdicts SMTP"
-set shared report-group "Possible Compromise" custom-widget 4 custom-report "Hosts visit malicious sites"
-set shared report-group "Possible Compromise" custom-widget 5 custom-report "Host-visit malicious sites plus"
-set shared report-group "Possible Compromise" custom-widget 6 custom-report "Hosts visit questionable sites"
-set shared report-group "Possible Compromise" custom-widget 7 custom-report "Host-visit quest sites plus"
-set shared report-group "Possible Compromise" title-page yes
-set shared report-group "Possible Compromise" variable title value "Possible Compromise"
 
 #Palo recommended default rules
 set rulebase default-security-rules rules intrazone-default action allow
