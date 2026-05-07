@@ -370,7 +370,7 @@ set profiles virus Alert-Only-AV mlav-engine-filebased-enabled "Windows Executab
 set profiles virus Alert-Only-AV mlav-engine-filebased-enabled "PowerShell Script 1" mlav-policy-action enable(alert-only)
 set profiles virus Alert-Only-AV mlav-engine-filebased-enabled "PowerShell Script 2" mlav-policy-action enable(alert-only)
 set profiles virus Alert-Only-AV mlav-engine-filebased-enabled "Executable Linked Format" mlav-policy-action enable(alert-only)
-set profiles virus Alert-Only-AV mlav-engine-filebased-enabled MSOffice mlav-policy-action disable
+set profiles virus Alert-Only-AV mlav-engine-filebased-enabled MSOffice mlav-policy-action enable(alert-only)
 set profiles virus Alert-Only-AV mlav-engine-filebased-enabled Shell mlav-policy-action enable(alert-only)
 set profiles virus Alert-Only-AV mlav-engine-filebased-enabled OOXML mlav-policy-action enable(alert-only)
 set profiles virus Alert-Only-AV mlav-engine-filebased-enabled MachO mlav-policy-action enable(alert-only)
